@@ -11,6 +11,7 @@
 		CE54A2672BDCAF37000A404E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54A2662BDCAF37000A404E /* ContentView.swift */; };
 		CE54A2692BDCAF39000A404E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE54A2682BDCAF39000A404E /* Assets.xcassets */; };
 		CE54A26C2BDCAF39000A404E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE54A26B2BDCAF39000A404E /* Preview Assets.xcassets */; };
+		CECCA75F2BDCBDE20091A009 /* CustomerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCA75E2BDCBDE20091A009 /* CustomerInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		CE54A2662BDCAF37000A404E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CE54A2682BDCAF39000A404E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE54A26B2BDCAF39000A404E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CECCA75E2BDCBDE20091A009 /* CustomerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				CE54A2642BDCAF37000A404E /* HotelBookingSystemApp.swift */,
 				CE54A2662BDCAF37000A404E /* ContentView.swift */,
+				CECCA75E2BDCBDE20091A009 /* CustomerInfoView.swift */,
 				CE54A2682BDCAF39000A404E /* Assets.xcassets */,
 				CE54A26A2BDCAF39000A404E /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECCA75F2BDCBDE20091A009 /* CustomerInfoView.swift in Sources */,
 				CE54A2672BDCAF37000A404E /* ContentView.swift in Sources */,
 				CE54A2652BDCAF37000A404E /* HotelBookingSystemApp.swift in Sources */,
 			);
