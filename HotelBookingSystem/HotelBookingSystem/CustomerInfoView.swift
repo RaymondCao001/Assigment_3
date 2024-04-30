@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CustomerInfoView: View {
+    var room: Room
+    
     @Environment(\.presentationMode) var presentationMode
     @State private var firstName: String = ""
     @State private var lastName: String = ""
@@ -65,6 +67,8 @@ struct CustomerInfoView: View {
     }
 }
 
-#Preview {
-    CustomerInfoView()
+struct CustomerInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomerInfoView(room: Room(id: "1", type: "Standard Room", occupancy: 2, bedType: "Queen Size", price: 120.00, area: 45))
+    }
 }
