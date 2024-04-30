@@ -13,6 +13,8 @@
 		CE54A26C2BDCAF39000A404E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE54A26B2BDCAF39000A404E /* Preview Assets.xcassets */; };
 		CECCA75F2BDCBDE20091A009 /* CustomerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCA75E2BDCBDE20091A009 /* CustomerInfoView.swift */; };
 		CECCA7632BDCE86E0091A009 /* RoomInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCA7622BDCE86E0091A009 /* RoomInfoModel.swift */; };
+		CEE0D1052BE0E86700AFD258 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D1032BE0E86700AFD258 /* RoomModel.swift */; };
+		CEE0D1062BE0E86700AFD258 /* RoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D1042BE0E86700AFD258 /* RoomListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		CE54A26B2BDCAF39000A404E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CECCA75E2BDCBDE20091A009 /* CustomerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfoView.swift; sourceTree = "<group>"; };
 		CECCA7622BDCE86E0091A009 /* RoomInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoModel.swift; sourceTree = "<group>"; };
+		CEE0D1032BE0E86700AFD258 /* RoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
+		CEE0D1042BE0E86700AFD258 /* RoomListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				CE54A2642BDCAF37000A404E /* HotelBookingSystemApp.swift */,
+				CEE0D1042BE0E86700AFD258 /* RoomListView.swift */,
+				CEE0D1032BE0E86700AFD258 /* RoomModel.swift */,
 				CECCA7622BDCE86E0091A009 /* RoomInfoModel.swift */,
 				CE54A2662BDCAF37000A404E /* ContentView.swift */,
 				CECCA75E2BDCBDE20091A009 /* CustomerInfoView.swift */,
@@ -145,6 +151,8 @@
 			files = (
 				CECCA7632BDCE86E0091A009 /* RoomInfoModel.swift in Sources */,
 				CECCA75F2BDCBDE20091A009 /* CustomerInfoView.swift in Sources */,
+				CEE0D1052BE0E86700AFD258 /* RoomModel.swift in Sources */,
+				CEE0D1062BE0E86700AFD258 /* RoomListView.swift in Sources */,
 				CE54A2672BDCAF37000A404E /* ContentView.swift in Sources */,
 				CE54A2652BDCAF37000A404E /* HotelBookingSystemApp.swift in Sources */,
 			);
