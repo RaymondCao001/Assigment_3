@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RoomListView: View {
-    let rooms: [Room]
+    var rooms = hotelRooms
     
     var body: some View {
         NavigationView {
@@ -52,14 +52,8 @@ struct RoomView: View {
     }
 }
 
-// Preview Provider
 struct RoomListView_Previews: PreviewProvider {
     static var previews: some View {
-        RoomListView(rooms: [
-            Room(id: "1", type: "Standard Room", occupancy: 2, bedType: "Queen Size", price: 120.00, area: 35),
-            Room(id: "2", type: "Superior Room", occupancy: 2, bedType: "Queen Size", price: 160.00, area: 45),
-            Room(id: "3", type: "Luxury Room", occupancy: 2, bedType: "King Size", price: 200.00, area: 45),
-            Room(id: "4", type: "Suite", occupancy: 2, bedType: "King Size", price: 400.00, area: 90)
-        ])
+        RoomListView()
     }
 }

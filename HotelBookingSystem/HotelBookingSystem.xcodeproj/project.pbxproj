@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2A6DDE9E2BE1129800E8DA0E /* RoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DDE9D2BE1129800E8DA0E /* RoomListView.swift */; };
-		2AC3E3082BE10C66002E46ED /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC3E3062BE10C66002E46ED /* RoomModel.swift */; };
 		CE54A2652BDCAF37000A404E /* HotelBookingSystemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54A2642BDCAF37000A404E /* HotelBookingSystemApp.swift */; };
 		CE54A2672BDCAF37000A404E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54A2662BDCAF37000A404E /* ContentView.swift */; };
 		CE54A2692BDCAF39000A404E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE54A2682BDCAF39000A404E /* Assets.xcassets */; };
@@ -19,7 +18,6 @@
 
 /* Begin PBXFileReference section */
 		2A6DDE9D2BE1129800E8DA0E /* RoomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListView.swift; sourceTree = "<group>"; };
-		2AC3E3062BE10C66002E46ED /* RoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoomModel.swift; path = ../../../../../.Trash/RoomModel.swift; sourceTree = "<group>"; };
 		CE54A2612BDCAF37000A404E /* HotelBookingSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotelBookingSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE54A2642BDCAF37000A404E /* HotelBookingSystemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelBookingSystemApp.swift; sourceTree = "<group>"; };
 		CE54A2662BDCAF37000A404E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 			children = (
 				CE54A2642BDCAF37000A404E /* HotelBookingSystemApp.swift */,
 				CECCA7622BDCE86E0091A009 /* RoomInfoModel.swift */,
-				2AC3E3062BE10C66002E46ED /* RoomModel.swift */,
 				CE54A2662BDCAF37000A404E /* ContentView.swift */,
 				CECCA75E2BDCBDE20091A009 /* CustomerInfoView.swift */,
 				CE54A2682BDCAF39000A404E /* Assets.xcassets */,
@@ -149,7 +146,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AC3E3082BE10C66002E46ED /* RoomModel.swift in Sources */,
 				CECCA7632BDCE86E0091A009 /* RoomInfoModel.swift in Sources */,
 				CECCA75F2BDCBDE20091A009 /* CustomerInfoView.swift in Sources */,
 				2A6DDE9E2BE1129800E8DA0E /* RoomListView.swift in Sources */,

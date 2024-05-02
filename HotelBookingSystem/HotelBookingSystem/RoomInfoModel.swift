@@ -7,15 +7,17 @@
 
 import Foundation
 
-struct RoomInfoModel {
-    let roomName: String
-    let maxOccupancy: Int   // The max number of people can live in this room
-    let bedDescription: String  // The bed information
-    var remainingRooms: Int   // Rooms remaining
+struct Room: Identifiable {
+    var id: String
+    var type: String
+    var occupancy: Int
+    var bedType: String
+    var price: Double
+    var area: Double
 }
 
-var rooms: [RoomInfoModel] = [
-    RoomInfoModel(roomName: "Premium King Room", maxOccupancy: 2, bedDescription: "1 king bed", remainingRooms: 100),
-    RoomInfoModel(roomName: "King Suite", maxOccupancy: 2, bedDescription: "1 king bed", remainingRooms: 100),
-    RoomInfoModel(roomName: "Standard Queen Room", maxOccupancy: 2, bedDescription: "1 queen bed", remainingRooms: 100)
+let hotelRooms: [Room] = [
+    Room(id: "1", type: "Standard Room", occupancy: 2, bedType: "Queen Size", price: 120.00, area: 45),
+    Room(id: "2", type: "Luxury Room", occupancy: 2, bedType: "King Size", price: 200.00, area: 45),
+    Room(id: "3", type: "Suite", occupancy: 2, bedType: "King Size", price: 400.00, area: 90)
 ]
