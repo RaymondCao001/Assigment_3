@@ -2,7 +2,7 @@
 //  RoomInfoModel.swift
 //  HotelBookingSystem
 //
-//  Created by Relex on 27/4/2024.
+//  Created by Jiale Zhou on 30/4/2024.
 //
 
 import Foundation
