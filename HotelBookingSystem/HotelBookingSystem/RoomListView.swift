@@ -17,6 +17,7 @@ struct RoomListView: View {
 
 struct RoomView: View {
     @State private var numberOfRooms = 0
+    @State private var navigateToCustomerInfo = false
     var room: Room
     
     var body: some View {
@@ -43,16 +44,26 @@ struct RoomView: View {
 
                 // Navigation link to book the room, leading to the CustomerInfoView
                
-                NavigationLink(destination: CustomerInfoView(room: room)) {
-                    Text("Select")
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-            }
-        }
+                Button(action: {
+                                    if numberOfRooms > 0 {
+                                        navigateToCustomerInfo = true  // 用户点击时如果选了房间，触发跳转
+                                    }
+                                }) {
+                                    Text("Select")
+                                        .frame(minWidth: 0, maxWidth: .infinity)
+                                        .padding()
+                                        .background(numberOfRooms > 0 ? Color.blue : Color.gray)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(8)
+                                        .disabled(numberOfRooms == 0)  // 如果未选择房间则禁用按钮
+                                }
+                                
+                                // 隐藏的 NavigationLink，通过状态变量控制激活
+                                NavigationLink(destination: CustomerInfoView(room: room), isActive: $navigateToCustomerInfo) {
+                                    EmptyView()  // 不显示任何视图作为导航链接
+                                }
+                            }
+                        }
         .padding(.vertical)
     }
 }
