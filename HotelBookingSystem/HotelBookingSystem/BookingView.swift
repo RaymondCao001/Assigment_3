@@ -31,7 +31,7 @@ struct HotelBookingView: View {
             }
             .navigationTitle("酒店预订")
             .background(
-                NavigationLink(destination: RoomListView(), isActive: $showRoomListView) {
+                NavigationLink(destination: RoomListView(checkInDate: checkInDate, checkOutDate: checkOutDate), isActive: $showRoomListView) {
                     EmptyView()
                 }
             )

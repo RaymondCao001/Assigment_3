@@ -5,11 +5,12 @@ struct RoomListView: View {
     // Array holding the data for each room, fetched from
     // RoomInfoModel -> 'hotelRooms'
     var rooms = hotelRooms
-    
+    var checkInDate: Date
+    var checkOutDate: Date
     // Defines the view hierarchy for the RoomListView
     var body: some View {
         List(rooms) { room in
-            RoomView(room: room)
+            RoomView(room: room, checkInDate: checkInDate, checkOutDate: checkOutDate)
         }
         .navigationBarTitle("Select a Room")
     }
@@ -19,6 +20,9 @@ struct RoomView: View {
     @State private var numberOfRooms = 0
     @State private var navigateToCustomerInfo = false
     var room: Room
+    
+    var checkInDate: Date
+    var checkOutDate: Date
     
     var body: some View {
         // Defines the view hierarchy for how each room is displayed
@@ -45,8 +49,8 @@ struct RoomView: View {
                 // Navigation link to book the room, leading to the CustomerInfoView
                
                 Button(action: {
-                                    if numberOfRooms > 0 {
-                                        navigateToCustomerInfo = true  // 用户点击时如果选了房间，触发跳转
+                                    if numberOfRooms == 0 {
+                                        navigateToCustomerInfo = false  // 用户点击时如果选了房间，触发跳转
                                     }
                                 }) {
                                     Text("Select")
@@ -55,11 +59,11 @@ struct RoomView: View {
                                         .background(numberOfRooms > 0 ? Color.blue : Color.gray)
                                         .foregroundColor(.white)
                                         .cornerRadius(8)
-                                        .disabled(numberOfRooms == 0)  // 如果未选择房间则禁用按钮
+                                        .disabled(numberOfRooms == 0)// 如果未选择房间则禁用按钮
                                 }
-                                
+
                                 // 隐藏的 NavigationLink，通过状态变量控制激活
-                                NavigationLink(destination: CustomerInfoView(room: room), isActive: $navigateToCustomerInfo) {
+                NavigationLink(destination: CustomerInfoView(room: room, checkInDate: checkInDate, checkOutDate: checkOutDate,numberOfRooms:numberOfRooms), isActive: $navigateToCustomerInfo) {
                                     EmptyView()  // 不显示任何视图作为导航链接
                                 }
                             }
@@ -69,8 +73,8 @@ struct RoomView: View {
 }
 
 // Provides a preview of the RoomListView
-struct RoomListView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoomListView()
-    }
-}
+//struct RoomListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RoomListView()
+//    }
+//}
