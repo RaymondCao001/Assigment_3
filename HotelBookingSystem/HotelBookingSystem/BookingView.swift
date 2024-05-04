@@ -2,29 +2,48 @@ import SwiftUI
 
 struct HotelBookingView: View {
     @State private var checkInDate = Date()
-    @State private var checkOutDate = Date()
+    @State private var checkOutDate = Date().addingTimeInterval(86400) // Ensures check-out is a day after check-in
     @State private var showRoomListView = false
 
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Choose Dates")) {
-                    DatePicker("Check In", selection: $checkInDate, displayedComponents: .date)
-                    DatePicker("Check Out", selection: $checkOutDate, displayedComponents: .date)
-                }
+            VStack {
+                Spacer()
+                Form {
+                    Section(header: Text("Choose Dates")) {
+                        DatePicker(
+                            "Check In",
+                            selection: $checkInDate,
+                            in: Date()..., // Disallows past dates
+                            displayedComponents: .date
+                        ).onChange(of: checkInDate) { newDate in
+                            if checkOutDate <= newDate {
+                                checkOutDate = newDate.addingTimeInterval(86400) // Adjust check-out date
+                            }
+                        }
+                        
+                        DatePicker(
+                            "Check Out",
+                            selection: $checkOutDate,
+                            in: checkInDate.addingTimeInterval(86400)..., // Check-out must be after check-in
+                            displayedComponents: .date
+                        )
+                    }
 
-                
-                Button("Search") {
-                    // 当按钮被点击时，触发视图跳转
-                    showRoomListView = true
-                }
-                .buttonStyle(.borderedProminent)
+                    Button("Search") {
+                        showRoomListView = true
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(checkOutDate <= checkInDate)
+                    .frame(minWidth: 0, maxWidth: .infinity)
 
-                Button("Manage Bookings") {
-                    // 管理预订的逻辑
-
+                    Button("Manage Bookings") {
+                        // Implement manage bookings functionality
+                    }
+                    .buttonStyle(.bordered)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                 }
-                .buttonStyle(.bordered)
+                Spacer()
             }
             .navigationTitle("Hotel Booking")
             .background(
@@ -35,8 +54,6 @@ struct HotelBookingView: View {
         }
     }
 }
-
-
 
 struct HotelBookingView_Previews: PreviewProvider {
     static var previews: some View {
