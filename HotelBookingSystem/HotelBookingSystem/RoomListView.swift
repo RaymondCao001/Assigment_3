@@ -27,10 +27,10 @@ struct RoomView: View {
     var body: some View {
         VStack {
             HStack {
-                Image(room.type.lowercased())
+                Image(room.type.replacingOccurrences(of: " ", with: "_").lowercased())
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80, height: 60)
+                    .frame(width: 150, height: 120)
                     .cornerRadius(10)
                     .padding(.trailing, 10)
 
