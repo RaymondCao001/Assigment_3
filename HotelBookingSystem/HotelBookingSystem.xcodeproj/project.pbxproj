@@ -61,9 +61,9 @@
 				CECCA7622BDCE86E0091A009 /* RoomInfoModel.swift */,
 				CE54A2662BDCAF37000A404E /* ContentView.swift */,
 				CECCA75E2BDCBDE20091A009 /* CustomerInfoView.swift */,
+				2A6DDE9D2BE1129800E8DA0E /* RoomListView.swift */,
 				CE54A2682BDCAF39000A404E /* Assets.xcassets */,
 				CE54A26A2BDCAF39000A404E /* Preview Content */,
-				2A6DDE9D2BE1129800E8DA0E /* RoomListView.swift */,
 			);
 			path = HotelBookingSystem;
 			sourceTree = "<group>";
