@@ -62,9 +62,8 @@ struct RoomView: View {
                                         .disabled(numberOfRooms == 0)// 如果未选择房间则禁用按钮
                                 }
 
-                                // 隐藏的 NavigationLink，通过状态变量控制激活
                 NavigationLink(destination: CustomerInfoView(room: room, checkInDate: checkInDate, checkOutDate: checkOutDate,numberOfRooms:numberOfRooms), isActive: $navigateToCustomerInfo) {
-                                    EmptyView()  // 不显示任何视图作为导航链接
+                                    EmptyView()
                                 }
                             }
                         }
