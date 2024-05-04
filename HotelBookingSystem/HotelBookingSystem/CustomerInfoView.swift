@@ -69,6 +69,6 @@ struct CustomerInfoView: View {
 
 struct CustomerInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomerInfoView(room: Room(id: "1", type: "Standard Room", occupancy: 2, bedType: "Queen Size", price: 120.00, area: 45))
+        CustomerInfoView(room: Room(id: "1", type: "Standard Room", occupancy: 2, bedType: "Queen Size", price: 120.00, area: 45, number:1))
     }
 }
