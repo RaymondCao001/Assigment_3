@@ -1,21 +1,16 @@
-//
-//  ContentView.swift
-//  HotelBookingSystem
-//
-//  Created by Relex on 27/4/2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     @State private var showingRoomList = false
     @State private var showingCustomerInfo = false
     @State private var checkInDate = Date()
+    @State private var checkOutDate = Date()
+    @State private var roomCount = 1
+    @State private var numberOfPeople = 1
     @State private var isDateSelected = false
     
     var body: some View {
         ZStack {
-            // 设置背景图片
             Image("hotel_background")
                 .resizable()
                 .scaledToFill()
@@ -25,56 +20,41 @@ struct ContentView: View {
                 Text("Welcome to our Hotel")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(Color.mint) // 设置标题颜色为Mint
+                    .foregroundColor(Color.mint)
                     .padding(.top, 50)
                 
-                DatePicker("Check-In Date", selection: $checkInDate, displayedComponents: [.date, .hourAndMinute])
-                    .datePickerStyle(GraphicalDatePickerStyle())
-                    .padding()
-                    .onChange(of: checkInDate) { _ in
-                        isDateSelected = true
-                    }
+                VStack(spacing: 20) {
+                    DatePicker("Check-In Date", selection: $checkInDate, displayedComponents: [.date])
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                    
+                    DatePicker("Check-Out Date", selection: $checkOutDate, in: checkInDate..., displayedComponents: [.date])
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                    
+                    Stepper("Rooms: \(roomCount)", value: $roomCount, in: 1...5)
+                    Stepper("People: \(numberOfPeople)", value: $numberOfPeople, in: 1...10)
+                }
+                .padding()
 
                 Spacer()
                 
-                // 入住Button
-                Button("Check In") {
+                Button("Search Rooms") {
                     self.showingRoomList = true
                 }
                 .buttonStyle(PrimaryBlackButtonStyle())
                 .padding()
-                .disabled(!isDateSelected)
-                .fullScreenCover(isPresented: $showingRoomList) {
-                    NavigationView {
-                        RoomListView(rooms: hotelRooms)
-                            .navigationBarItems(leading: Button("Close") {
-                                self.showingRoomList = false
-                            })
-                    }
-                }
-                
-                // 管理Button
+                .disabled(checkOutDate <= checkInDate) // Disable if check-out is before check-in
+
                 Button("Manage") {
                     self.showingCustomerInfo = true
                 }
                 .buttonStyle(PrimaryBlackButtonStyle())
                 .padding()
-                .disabled(!isDateSelected)
-                .fullScreenCover(isPresented: $showingCustomerInfo) {
-                    NavigationView {
-                        CustomerInfoView(room: Room(id: "1", type: "Standard Room", occupancy: 2, bedType: "Queen Size", price: 120.00, area: 45))
-                            .navigationBarItems(leading: Button("Close") {
-                                self.showingCustomerInfo = false
-                            })
-                    }
-                }
                 
                 Spacer()
             }
         }
     }
 }
-
 
 struct PrimaryBlackButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {

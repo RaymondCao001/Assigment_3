@@ -1,12 +1,4 @@
-//
-//  RoomListView.swift
-//  HotelBookingSystem
-//
-//  Created by Jiale Zhou on 30/04/2024.
-//
-
 import SwiftUI
-
 // View representing a list of rooms available for booking in a hotel
 struct RoomListView: View {
     
@@ -16,23 +8,20 @@ struct RoomListView: View {
     
     // Defines the view hierarchy for the RoomListView
     var body: some View {
-        NavigationView {
-            List(rooms) { room in
-                RoomView(room: room)
-            }
-            .navigationBarTitle("Select a Room")
+        List(rooms) { room in
+            RoomView(room: room)
         }
+        .navigationBarTitle("Select a Room")
     }
 }
 
 struct RoomView: View {
+    @State private var numberOfRooms = 0
     var room: Room
     
     var body: some View {
-        
         // Defines the view hierarchy for how each room is displayed
         HStack {
-            
             // Displays an image corresponding to the room type
             Image(room.type.lowercased())
                 .resizable()
@@ -48,8 +37,12 @@ struct RoomView: View {
                 Text("Occupancy: \(room.occupancy) people")
                 Text("Bed: \(room.bedType)")
                 Text("Price: $\(room.price, specifier: "%.2f")")
+                Spacer()
                 
+                Stepper("No. \(numberOfRooms)", value: $numberOfRooms, in: 0...room.number)
+
                 // Navigation link to book the room, leading to the CustomerInfoView
+               
                 NavigationLink(destination: CustomerInfoView(room: room)) {
                     Text("Select")
                         .frame(minWidth: 0, maxWidth: .infinity)
