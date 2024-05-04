@@ -40,7 +40,7 @@ struct RoomView: View {
                 Text("Price: $\(room.price, specifier: "%.2f")")
                 Spacer()
                 
-                Stepper("No. \(numberOfRooms)", value: $numberOfRooms, in: 0...room.number)
+                Stepper("No. \(numberOfRooms)", value: $numberOfRooms, in: 0...100)
 
                 // Navigation link to book the room, leading to the CustomerInfoView
                
