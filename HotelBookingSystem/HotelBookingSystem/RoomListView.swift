@@ -30,14 +30,14 @@ struct RoomView: View {
                 Image(room.type.replacingOccurrences(of: " ", with: "_").lowercased())
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 150, height: 120)
+                    .frame(width: 150, height: 150)
                     .cornerRadius(10)
                     .padding(.trailing, 10)
 
                 VStack(alignment: .leading) {
                     Text(room.type).font(.headline)
                     Text("Area: \(room.area, specifier: "%.2f") sqm")
-                    Text("Occupancy: \(room.occupancy) people")
+                    Text("Occupancy: \(room.occupancy)")
                     Text("Bed: \(room.bedType)")
                     Text("Price: $\(room.price, specifier: "%.2f")")
                 }
