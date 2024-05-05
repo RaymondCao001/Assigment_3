@@ -4,6 +4,7 @@ struct HotelBookingView: View {
     @State private var checkInDate = Date()
     @State private var checkOutDate = Date().addingTimeInterval(86400) // Ensures check-out is a day after check-in
     @State private var showRoomListView = false
+    @State private var showManageBViewModel = false
 
     var body: some View {
         NavigationView {
@@ -38,6 +39,7 @@ struct HotelBookingView: View {
                     
                     Button("Manage Bookings") {
                         // Implement manage bookings functionality
+                        showManageBViewModel = true
                     }
                     .buttonStyle(.bordered)
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -46,9 +48,14 @@ struct HotelBookingView: View {
             }
             .navigationTitle("Hotel Booking")
             .background(
-                NavigationLink(destination: RoomListView(checkInDate: checkInDate, checkOutDate: checkOutDate), isActive: $showRoomListView) {
-                    EmptyView()
-                }
+                Group {
+                                    NavigationLink(destination: RoomListView(checkInDate: checkInDate, checkOutDate: checkOutDate), isActive: $showRoomListView) {
+                                        EmptyView()
+                                    }
+                                    NavigationLink(destination: ManageBViewModel(), isActive: $showManageBViewModel) {
+                                        EmptyView()
+                                    }
+                                }
             )
         }
     }
