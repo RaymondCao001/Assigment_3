@@ -2,7 +2,9 @@ import SwiftUI
 
 struct ManageBViewModel: View {
     @State private var bookings: [Booking] = []
-    
+    @State private var showDeleteConfirmation = false
+    @State private var bookingToDelete: Booking?
+
     var body: some View {
         NavigationView {
             if bookings.isEmpty {
@@ -26,7 +28,8 @@ struct ManageBViewModel: View {
                         }
                         Spacer()
                         Button(action: {
-                            deleteBooking(booking)
+                            bookingToDelete = booking
+                            showDeleteConfirmation = true
                         }) {
                             Image(systemName: "trash")
                                 .foregroundColor(.white)
@@ -37,6 +40,18 @@ struct ManageBViewModel: View {
                     }
                 }
                 .navigationTitle("Bookings List")
+                .alert(isPresented: $showDeleteConfirmation) {
+                    Alert(
+                        title: Text("Confirm Deletion"),
+                        message: Text("Are you sure you want to delete this booking?"),
+                        primaryButton: .destructive(Text("Delete")) {
+                            if let booking = bookingToDelete {
+                                deleteBooking(booking)
+                            }
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
             }
         }
         .onAppear {
