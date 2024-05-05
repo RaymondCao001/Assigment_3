@@ -39,7 +39,7 @@ struct RoomView: View {
                     Text("Area: \(room.area, specifier: "%.2f") sqm")
                     Text("Occupancy: \(room.occupancy)")
                     Text("Bed: \(room.bedType)")
-                    Text("Price: $\(room.price, specifier: "%.2f")")
+                    Text("Price: $\(room.price, specifier: "%.2f") pn")
                 }
             }
             

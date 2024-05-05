@@ -29,14 +29,13 @@ struct HotelBookingView: View {
                             displayedComponents: .date
                         )
                     }
-
                     Button("Search") {
                         showRoomListView = true
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(checkOutDate <= checkInDate)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(checkOutDate <= checkInDate)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                    
                     Button("Manage Bookings") {
                         // Implement manage bookings functionality
                     }

@@ -46,7 +46,7 @@ struct CustomerInfoView: View {
                     }
                     .disabled(!isFormValid())
                     .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("Booking Confirmed"), message: Text("Your booking for \(firstName) \(lastName) has been successfully made."), dismissButton: .default(Text("Return to Homepage")){
+                        Alert(title: Text("Booking Confirmed"), message: Text("Your booking \(numberOfRooms) \(room.type) for \(firstName) \(lastName) has been successfully made."), dismissButton: .default(Text("Return to Homepage")){
                             self.presentationMode.wrappedValue.dismiss()
                         })
                     }
