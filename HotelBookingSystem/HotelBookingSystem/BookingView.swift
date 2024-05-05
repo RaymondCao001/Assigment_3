@@ -4,60 +4,53 @@ struct HotelBookingView: View {
     @State private var checkInDate = Date()
     @State private var checkOutDate = Date().addingTimeInterval(86400) // Ensures check-out is a day after check-in
     @State private var showRoomListView = false
-    @State private var showManageBViewModel = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                Form {
-                    Section(header: Text("Choose Dates")) {
-                        DatePicker(
-                            "Check In",
-                            selection: $checkInDate,
-                            in: Date()..., // Disallows past dates
-                            displayedComponents: .date
-                        ).onChange(of: checkInDate) { newDate in
-                            if checkOutDate <= newDate {
-                                checkOutDate = newDate.addingTimeInterval(86400) // Adjust check-out date
-                            }
+        VStack {
+            Spacer()
+            // Date selection form
+            Form {
+                Section(header: Text("Choose Dates")) {
+                    DatePicker(
+                        "Check In",
+                        selection: $checkInDate,
+                        in: Date()..., // Disallows past dates
+                        displayedComponents: .date
+                    ).onChange(of: checkInDate) { newDate in
+                        if checkOutDate <= newDate {
+                            checkOutDate = newDate.addingTimeInterval(86400) // Adjust check-out date
                         }
-                        
-                        DatePicker(
-                            "Check Out",
-                            selection: $checkOutDate,
-                            in: checkInDate.addingTimeInterval(86400)..., // Check-out must be after check-in
-                            displayedComponents: .date
-                        )
                     }
-                    Button("Search") {
-                        showRoomListView = true
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .disabled(checkOutDate <= checkInDate)
-                        .frame(minWidth: 0, maxWidth: .infinity)
                     
-                    Button("Manage Bookings") {
-                        // Implement manage bookings functionality
-                        showManageBViewModel = true
-                    }
-                    .buttonStyle(.bordered)
-                    .frame(minWidth: 0, maxWidth: .infinity)
+                    DatePicker(
+                        "Check Out",
+                        selection: $checkOutDate,
+                        in: checkInDate.addingTimeInterval(86400)..., // Check-out must be after check-in
+                        displayedComponents: .date
+                    )
                 }
-                Spacer()
             }
-            .navigationTitle("Hotel Booking")
-            .background(
-                Group {
-                                    NavigationLink(destination: RoomListView(checkInDate: checkInDate, checkOutDate: checkOutDate), isActive: $showRoomListView) {
-                                        EmptyView()
-                                    }
-                                    NavigationLink(destination: ManageBViewModel(), isActive: $showManageBViewModel) {
-                                        EmptyView()
-                                    }
-                                }
-            )
+            
+            // Search button styled similarly to the buttons in ContentView.swift
+            Button("Search") {
+                showRoomListView = true
+            }
+            .frame(minWidth: 0, maxWidth: 200)
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .shadow(radius: 5)
+            .disabled(checkOutDate <= checkInDate)
+            
+            Spacer()
         }
+        .navigationTitle("Hotel Booking")
+        .background(
+            NavigationLink(destination: RoomListView(checkInDate: checkInDate, checkOutDate: checkOutDate), isActive: $showRoomListView) {
+                EmptyView()
+            }
+        )
     }
 }
 
