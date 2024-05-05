@@ -8,30 +8,28 @@ struct HotelBookingView: View {
     var body: some View {
         VStack {
             Spacer()
-            // Date selection form
             Form {
                 Section(header: Text("Choose Dates")) {
                     DatePicker(
                         "Check In",
                         selection: $checkInDate,
-                        in: Date()..., // Disallows past dates
+                        in: Date()...,
                         displayedComponents: .date
                     ).onChange(of: checkInDate) { newDate in
                         if checkOutDate <= newDate {
-                            checkOutDate = newDate.addingTimeInterval(86400) // Adjust check-out date
+                            checkOutDate = newDate.addingTimeInterval(86400)
                         }
                     }
                     
                     DatePicker(
                         "Check Out",
                         selection: $checkOutDate,
-                        in: checkInDate.addingTimeInterval(86400)..., // Check-out must be after check-in
+                        in: checkInDate.addingTimeInterval(86400)...,
                         displayedComponents: .date
                     )
                 }
             }
             
-            // Search button styled similarly to the buttons in ContentView.swift
             Button("Search") {
                 showRoomListView = true
             }

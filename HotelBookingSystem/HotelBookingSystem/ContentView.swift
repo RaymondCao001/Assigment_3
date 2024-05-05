@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct ContentView: View {
     @State private var showingRoomList = false
     @State private var showingCustomerInfo = false
@@ -12,8 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Background image or color
-                Image("hotel_background") // Replace "hotel_background" with the actual image file name if you have one
+                Image("hotel_background")
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
@@ -55,7 +55,6 @@ struct ContentView: View {
                     Spacer()
                 }
                 
-                // Navigation links to transition to the booking or manage booking views
                 NavigationLink(destination: HotelBookingView(), isActive: $navigateToBookingView) {
                     EmptyView()
                 }

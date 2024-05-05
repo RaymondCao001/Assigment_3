@@ -1,5 +1,4 @@
 import SwiftUI
-// View representing a list of rooms available for booking in a hotel
 struct RoomListView: View {
     
     // Array holding the data for each room, fetched from

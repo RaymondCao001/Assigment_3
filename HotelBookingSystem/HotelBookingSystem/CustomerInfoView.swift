@@ -1,10 +1,3 @@
-//
-//  CustomerInfoView.swift
-//  HotelBookingSystem
-//
-//  Created by Relex on 27/4/2024.
-//
-
 import SwiftUI
 
 struct CustomerInfoView: View {
@@ -17,7 +10,7 @@ struct CustomerInfoView: View {
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var phoneNumber: String = ""
-    @State private var showingAlert = false // State to manage the alert visibility
+    @State private var showingAlert = false 
     
     
     var body: some View {
@@ -41,7 +34,6 @@ struct CustomerInfoView: View {
                 
                 Section {
                     Button("Confirm") {
-                        // Action for the Book button
                         confirmAction()
                     }
                     .disabled(!isFormValid())
@@ -65,7 +57,6 @@ struct CustomerInfoView: View {
     }
     
     private func confirmAction() {
-        // Implement the booking action here
         saveBookingDetails()
         showingAlert = true
     }

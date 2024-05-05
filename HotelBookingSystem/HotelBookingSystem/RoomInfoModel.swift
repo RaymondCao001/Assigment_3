@@ -1,10 +1,3 @@
-//
-//  RoomInfoModel.swift
-//  HotelBookingSystem
-//
-//  Created by Jiale Zhou on 30/4/2024.
-//
-
 import Foundation
 
 struct Room: Identifiable {
@@ -16,6 +9,7 @@ struct Room: Identifiable {
     var area: Double
 }
 
+// Array of room instances representing different types of rooms in a hotel.
 let hotelRooms: [Room] = [
     Room(id: "1", type: "Standard Room", occupancy: 2, bedType: "Queen Size", price: 150.00, area: 45),
     Room(id: "2", type: "Superior Room", occupancy: 2, bedType: "King Size", price: 200.00, area: 45),
