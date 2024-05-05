@@ -16,6 +16,7 @@ struct CustomerInfoView: View {
     var body: some View {
         NavigationView {
             Form {
+                // Section for input fields for personal information
                 Section(header: Text("Enter your personal info")) {
                     HStack {
                         Text("First Name:")
@@ -28,26 +29,29 @@ struct CustomerInfoView: View {
                     HStack {
                         Text("Phone Number:")
                         TextField("Enter Phone Number", text: $phoneNumber)
-                            .keyboardType(.numberPad)
+                            .keyboardType(.numberPad) // Ensures numeric input for phone numbers
                     }
                 }
                 
+                
+                // Section for the confirmation button
                 Section {
                     Button("Confirm") {
                         confirmAction()
                     }
                     .disabled(!isFormValid())
-                    .alert(isPresented: $showingAlert) {
+                    .alert(isPresented: $showingAlert) { // Show alert on booking confirmation
                         Alert(title: Text("Booking Confirmed"), message: Text("Your booking \(numberOfRooms) \(room.type) for \(firstName) \(lastName) has been successfully made."), dismissButton: .default(Text("Return to Homepage")){
-                            self.presentationMode.wrappedValue.dismiss()
+                            self.presentationMode.wrappedValue.dismiss() // Dismiss view on confirmation
                         })
                     }
                 }
             }
-            .navigationBarTitle("Booking Confirm")
+            .navigationBarTitle("Booking Confirm") // Set navigation bar title
         }
     }
-    
+  
+    // Function to check if the form inputs are valid
     private func isFormValid() -> Bool {
         let isPhoneNumberValid = phoneNumber.allSatisfy { $0.isNumber } && !phoneNumber.isEmpty
         let isFirstNameValid = !firstName.isEmpty
@@ -56,26 +60,33 @@ struct CustomerInfoView: View {
         return isPhoneNumberValid && isFirstNameValid && isLastNameValid
     }
     
+    
+    // Function to handle the confirmation action
     private func confirmAction() {
         saveBookingDetails()
         showingAlert = true
     }
+    
+    // Function to save booking details to a file
     private func saveBookingDetails() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let checkInStr = dateFormatter.string(from: checkInDate)
         let checkOutStr = dateFormatter.string(from: checkOutDate)
         
+        // Prepare the CSV formatted string
         let csvLine = "\(firstName),\(lastName),\(phoneNumber),\(room.type),\(numberOfRooms),\(checkInStr),\(checkOutStr)\n"
         
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileName = documentsDirectory.appendingPathComponent("bookings.csv")
         
+        // Check if the file exists, if not, create it
         if !fileManager.fileExists(atPath: fileName.path) {
             fileManager.createFile(atPath: fileName.path, contents: nil, attributes: nil)
         }
         
+        // Attempt to write to the file
         if let fileHandle = try? FileHandle(forWritingTo: fileName) {
             fileHandle.seekToEndOfFile()
             if let data = csvLine.data(using: .utf8) {

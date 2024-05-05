@@ -1,6 +1,6 @@
 import SwiftUI
 
-
+// Define ContentView as a View type
 struct ContentView: View {
     @State private var showingRoomList = false
     @State private var showingCustomerInfo = false
@@ -13,12 +13,14 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                // Background image of the hotel
                 Image("hotel_background")
                     .resizable()
                     .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
+                    .edgesIgnoringSafeArea(.all) // Extend the image to the edges of the display
                 
                 VStack {
+                    // Title text for the welcome message
                     Text("Welcome to Our Hotel")
                         .font(.largeTitle)
                         .fontWeight(.bold)
@@ -43,7 +45,7 @@ struct ContentView: View {
                     
                     // Button for managing bookings
                     Button("Manage Booking") {
-                        navigateToManageBookingView = true
+                        navigateToManageBookingView = true // Activate the navigation state.
                     }
                     .frame(minWidth: 0, maxWidth: 200)
                     .padding()
@@ -54,11 +56,13 @@ struct ContentView: View {
                     
                     Spacer()
                 }
-                
+
+                // Hidden NavigationLink to navigate to HotelBookingView when activated
                 NavigationLink(destination: HotelBookingView(), isActive: $navigateToBookingView) {
                     EmptyView()
                 }
-                
+
+                // Hidden NavigationLink to navigate to ManageBookingView when activated.
                 NavigationLink(destination: ManageBViewModel(), isActive: $navigateToManageBookingView) {
                     EmptyView()
                 }

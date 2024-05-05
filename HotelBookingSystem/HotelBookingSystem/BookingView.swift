@@ -9,13 +9,15 @@ struct HotelBookingView: View {
         VStack {
             Spacer()
             Form {
+                // Section for date pickers to choose check-in and check-out dates
                 Section(header: Text("Choose Dates")) {
                     DatePicker(
                         "Check In",
                         selection: $checkInDate,
-                        in: Date()...,
+                        in: Date()..., // Restrict past dates
                         displayedComponents: .date
                     ).onChange(of: checkInDate) { newDate in
+                        // Ensure check-out is at least one day after check-in
                         if checkOutDate <= newDate {
                             checkOutDate = newDate.addingTimeInterval(86400)
                         }
@@ -24,12 +26,13 @@ struct HotelBookingView: View {
                     DatePicker(
                         "Check Out",
                         selection: $checkOutDate,
-                        in: checkInDate.addingTimeInterval(86400)...,
+                        in: checkInDate.addingTimeInterval(86400)..., // Restrict check-out to at least one day after check-in
                         displayedComponents: .date
                     )
                 }
             }
-            
+ 
+            // Button to proceed with the search
             Button("Search") {
                 showRoomListView = true
             }
@@ -43,7 +46,7 @@ struct HotelBookingView: View {
             
             Spacer()
         }
-        .navigationTitle("Hotel Booking")
+        .navigationTitle("Hotel Booking") // Set the title for the navigation bar
         .background(
             NavigationLink(destination: RoomListView(checkInDate: checkInDate, checkOutDate: checkOutDate), isActive: $showRoomListView) {
                 EmptyView()
