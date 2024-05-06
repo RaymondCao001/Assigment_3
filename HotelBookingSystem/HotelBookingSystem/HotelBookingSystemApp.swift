@@ -4,7 +4,7 @@ import SwiftUI
 struct HotelBookingSystemApp: App {
     var body: some Scene {
         WindowGroup {
-            HotelBookingView()
+            ContentView()
         }
     }
 }
