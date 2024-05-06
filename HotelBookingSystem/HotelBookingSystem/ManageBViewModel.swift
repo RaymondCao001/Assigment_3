@@ -44,7 +44,7 @@ struct ManageBViewModel: View {
                 .navigationTitle("Bookings List") // Title for the navigation bar
                 .alert(isPresented: $showDeleteConfirmation) { // Alert for delete confirmation
                     Alert(
-                        title: Text("Confirm Deletion"),
+                        title: Text("Confirmation"),
                         message: Text("Are you sure you want to delete this booking?"),
                         primaryButton: .destructive(Text("Delete")) {
                             if let booking = bookingToDelete {
