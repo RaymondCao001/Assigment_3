@@ -16,6 +16,7 @@ struct RoomListView: View {
 }
 
 struct RoomView: View {
+    @EnvironmentObject var pathManager: PathManager
     @State private var numberOfRooms = 0
     @State private var navigateToCustomerInfo = false
     var room: Room
@@ -47,6 +48,7 @@ struct RoomView: View {
             Button(action: {
                 if numberOfRooms > 0 {
                     navigateToCustomerInfo = true  // The jump is only activated when the number of rooms is greater than 0
+                    pathManager.path.append(3)
                 }
             }) {
                 Text("Select")
@@ -57,11 +59,6 @@ struct RoomView: View {
                     .cornerRadius(8)
                     .disabled(numberOfRooms == 0) // Disable button if no room is selected
             }
-            
-            // Invisible NavigationLink, controlled entirely by “Select” buttons
-            NavigationLink(destination: CustomerInfoView(room: room, checkInDate: checkInDate, checkOutDate: checkOutDate, numberOfRooms: numberOfRooms), isActive: $navigateToCustomerInfo) {
-                EmptyView()
-            }.hidden()
         }
         .padding(.vertical)
     }
