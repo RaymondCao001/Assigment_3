@@ -4,7 +4,6 @@ struct HotelBookingView: View {
     @State private var checkInDate = Date()
     @State private var checkOutDate = Date().addingTimeInterval(86400) // Ensures check-out is a day after check-in
     @State private var showRoomListView = false
-    @EnvironmentObject var pathManager: PathManager
 
     var body: some View {
         VStack {
@@ -36,7 +35,6 @@ struct HotelBookingView: View {
             // Button to proceed with the search
             Button("Search") {
                 showRoomListView = true
-                pathManager.path.append(2)
             }
             .frame(minWidth: 0, maxWidth: 200)
             .padding()
@@ -49,7 +47,11 @@ struct HotelBookingView: View {
             Spacer()
         }
         .navigationTitle("Hotel Booking") // Set the title for the navigation bar
-        .background()
+        .background(
+            NavigationLink(destination: RoomListView(checkInDate: checkInDate, checkOutDate: checkOutDate), isActive: $showRoomListView) {
+                EmptyView()
+            }
+        )
     }
 }
 

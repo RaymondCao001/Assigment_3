@@ -1,13 +1,7 @@
 import SwiftUI
 
-
-class PathManager: ObservableObject {
-    @Published var path = NavigationPath()
-}
-
 // Define ContentView as a View type
 struct ContentView: View {
-    @EnvironmentObject var pathManager: PathManager
     @State private var showingRoomList = false
     @State private var showingCustomerInfo = false
     @State private var roomCount = 1
@@ -17,7 +11,7 @@ struct ContentView: View {
     @State private var navigateToManageBookingView = false
 
     var body: some View {
-        NavigationStack(path: $pathManager.path) {
+        NavigationView {
             ZStack {
                 // Background image of the hotel
                 Image("hotel_background")
@@ -38,7 +32,7 @@ struct ContentView: View {
                     
                     // Button for booking rooms
                     Button("Booking Rooms") {
-                        pathManager.path.append(1)
+                        navigateToBookingView = true
                     }
                     .frame(minWidth: 0, maxWidth: 200)
                     .padding()
@@ -51,7 +45,7 @@ struct ContentView: View {
                     
                     // Button for managing bookings
                     Button("Manage Booking") {
-                        pathManager.path.append(4)
+                        navigateToManageBookingView = true // Activate the navigation state.
                     }
                     .frame(minWidth: 0, maxWidth: 200)
                     .padding()
@@ -62,18 +56,18 @@ struct ContentView: View {
                     
                     Spacer()
                 }
-            }
-            .navigationDestination(for: Int.self) { id in
-                switch id {
-                case 1: HotelBookingView()
-                case 2: RoomListView(checkInDate: Date(), checkOutDate: Date().addingTimeInterval(86400))
-                case 3: CustomerInfoView(room: Room(id: String(), type: String(), occupancy: Int(), bedType: String(), price: Double(), area: Double()), checkInDate: Date(), checkOutDate: Date(), numberOfRooms: 1)
-                case 4: ManageBViewModel()
-                default: ContentView()
+
+                // Hidden NavigationLink to navigate to HotelBookingView when activated
+                NavigationLink(destination: HotelBookingView(), isActive: $navigateToBookingView) {
+                    EmptyView()
+                }
+
+                // Hidden NavigationLink to navigate to ManageBookingView when activated.
+                NavigationLink(destination: ManageBViewModel(), isActive: $navigateToManageBookingView) {
+                    EmptyView()
                 }
             }
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
 

@@ -5,7 +5,7 @@ struct CustomerInfoView: View {
     var checkInDate: Date
     var checkOutDate: Date
     var numberOfRooms: Int
-    @EnvironmentObject var pathManager: PathManager
+    
     @Environment(\.presentationMode) var presentationMode
     @State private var firstName: String = ""
     @State private var lastName: String = ""
@@ -41,9 +41,8 @@ struct CustomerInfoView: View {
                     }
                     .disabled(!isFormValid())
                     .alert(isPresented: $showingAlert) { // Show alert on booking confirmation
-                        Alert(title: Text("Booking Confirmed !"), message: Text("Your booking \(numberOfRooms) \(room.type) for \(firstName) \(lastName) has been successfully made."), dismissButton: .default(Text("Return to Homepage")){
-                            pathManager.path.append(0)
-                            //self.presentationMode.wrappedValue.dismiss() // Dismiss view on confirmation
+                        Alert(title: Text("Booking Confirmed"), message: Text("Your booking \(numberOfRooms) \(room.type) for \(firstName) \(lastName) has been successfully made."), dismissButton: .default(Text("Quit")){
+                            exit(0) // Dismiss view on confirmation
                         })
                     }
                 }
@@ -105,7 +104,7 @@ struct CustomerInfoView: View {
 
 
 //struct CustomerInfoView_Previews: PreviewProvider {
-   //static var previews: some View {
-        //CustomerInfoView(room: Room(id: "1", type: "Standard Room", occupancy: 2, bedType: "Queen Size", price: 120.00, area: 45),checkInDate: Date(), checkOutDate: Date(),numberOfRooms: 3)
-   //}
+//    static var previews: some View {
+//        CustomerInfoView(room: Room(id: "1", type: "Standard Room", occupancy: 2, bedType: "Queen Size", price: 120.00, area: 45),checkInDate: "2024-11-02", checkOutDate: "2024-11-03",numberOfRooms: 3)
+//    }
 //}
